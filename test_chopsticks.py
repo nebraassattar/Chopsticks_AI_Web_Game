@@ -1,10 +1,10 @@
 from chopsticks import overflow_sum, next_moves, best_move_dp
 
 def test_overflow_sum():
-    assert pverflow_sum(1, 2) == 3
-    assert pverflow_sum(2, 2) == 4
-    assert pverflow_sum(3, 2) == 0
-    assert pverflow_sum(4, 4) == 0
+    assert overflow_sum(1, 2) == 3
+    assert overflow_sum(2, 2) == 4
+    assert overflow_sum(3, 2) == 0
+    assert overflow_sum(4, 4) == 0
 
 def test_initial_moves():
     state = ((1, 1), (1, 1), 0)
