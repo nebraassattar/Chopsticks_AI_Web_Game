@@ -138,12 +138,26 @@ def best_move_dp(depth):
     for h in range(depth -1, -1, -1):
         # fill in code below
 
-        pass
+        for i in range(5):
+            for j in range(5):
+                for k in range(5):
+                    for l in range(5):
+                        state = ((i, j), (k, 1), h)
 
+                        if i == 0 and j == 0 and k == 0 and l == 0:
+                            d[state] = (0, [])
+                        elif i == 0 and j == 0:
+                            d[state] = (-1, [])
+                        elif k == 0 and l == 0:
+                            d[state] = (1, [])
+                        else:
+                            successors = next_move(state)
 
-
-
-
+                            if h % 2 == 0:
+                                best_state = max(successors, key=lambda successor: d[successor][0])
+                            else:
+                                best_state = min(successors, key=lambda successor: d[successor][0])
+                            d[state] = (d[best_state][0], best_state)
 
     return d
 
