@@ -1,0 +1,131 @@
+:root {
+  --ink: #17211b;
+  --muted: #657069;
+  --cream: #f5f0e6;
+  --paper: #fffdf7;
+  --green: #245744;
+  --green-dark: #173d30;
+  --lime: #c9f06b;
+  --coral: #ed765d;
+  --line: #d9d5c9;
+  --shadow: 0 20px 60px rgba(29, 52, 41, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(201, 240, 107, 0.42), transparent 28rem),
+    radial-gradient(circle at 92% 86%, rgba(237, 118, 93, 0.2), transparent 25rem),
+    var(--cream);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button { font: inherit; }
+
+.game-shell {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 42px 0 56px;
+}
+
+.hero { text-align: center; margin-bottom: 24px; }
+.eyebrow { margin: 0 0 6px; color: var(--green); font-size: 0.74rem; font-weight: 800; letter-spacing: 0.16em; }
+.hero h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(3rem, 8vw, 5.2rem); line-height: 0.95; }
+.subtitle { margin: 12px auto 0; color: var(--muted); }
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 253, 247, 0.75);
+  backdrop-filter: blur(10px);
+}
+
+.scoreboard div { padding: 14px 18px; border-right: 1px solid var(--line); }
+.scoreboard div:last-child { border-right: 0; }
+.scoreboard span { display: block; color: var(--muted); font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em; }
+.scoreboard strong { display: block; margin-top: 3px; font-size: 1rem; }
+
+.board {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.player-zone { padding: 24px clamp(18px, 5vw, 46px) 30px; }
+.computer-zone { background: var(--green-dark); color: white; }
+.human-zone { background: var(--paper); }
+.player-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.player-heading h2 { margin: 2px 0 0; font-family: Georgia, serif; font-size: 1.7rem; }
+.player-heading h2 span { color: var(--lime); font-family: Inter, sans-serif; font-size: 0.75rem; vertical-align: middle; }
+.human-zone .player-heading h2 span { color: var(--green); }
+.zone-label { margin: 0; opacity: 0.68; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.14em; }
+.turn-dot { width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 50%; opacity: 0.3; }
+.turn-dot.active { border-color: var(--lime); background: var(--lime); box-shadow: 0 0 0 6px rgba(201, 240, 107, 0.17); opacity: 1; }
+.human-zone .turn-dot.active { border-color: var(--green); background: var(--green); box-shadow: 0 0 0 6px rgba(36, 87, 68, 0.12); }
+
+.hands { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.hand {
+  position: relative;
+  display: grid;
+  min-height: 150px;
+  padding: 17px;
+  border: 2px solid transparent;
+  border-radius: 22px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+.computer-zone .hand { color: white; background: rgba(255, 255, 255, 0.08); }
+.human-zone .hand { color: var(--ink); background: #f1eee4; }
+.hand:not(:disabled):hover { transform: translateY(-3px); }
+.hand:disabled { cursor: default; opacity: 0.62; }
+.hand.inactive { opacity: 0.38; }
+.hand.selected { border-color: var(--coral); box-shadow: 0 0 0 4px rgba(237, 118, 93, 0.18); }
+.hand.valid-target { border-color: var(--lime); box-shadow: 0 0 0 4px rgba(201, 240, 107, 0.16); opacity: 1; }
+.hand-label { align-self: start; font-size: 0.78rem; font-weight: 750; letter-spacing: 0.04em; }
+.finger-count { align-self: center; font-family: Georgia, serif; font-size: 4.2rem; line-height: 1; }
+.finger-pips { min-height: 11px; color: var(--lime); font-size: 1.1rem; letter-spacing: 0.12em; }
+.human-zone .finger-pips { color: var(--green); }
+
+.center-panel { min-height: 92px; padding: 20px; border-block: 1px solid var(--line); text-align: center; background: #faf7ee; }
+#status-message { margin: 0; font-weight: 700; }
+.redistribution-panel p { margin: 10px 0 8px; color: var(--muted); font-size: 0.84rem; }
+.redistribution-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.redistribution-option { padding: 9px 13px; border: 1px solid var(--green); border-radius: 999px; color: var(--green); background: white; cursor: pointer; font-weight: 750; }
+.redistribution-option:hover { color: white; background: var(--green); }
+
+.controls { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
+.secondary-button, .primary-button { border: 0; border-radius: 13px; cursor: pointer; font-weight: 800; }
+.secondary-button { padding: 12px 18px; color: white; background: var(--green); }
+.secondary-button:disabled { cursor: default; opacity: 0.42; }
+
+.setup-overlay { position: fixed; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(15, 31, 24, 0.72); backdrop-filter: blur(9px); z-index: 5; }
+.setup-overlay[hidden] { display: none; }
+.setup-card { width: min(520px, 100%); padding: clamp(26px, 5vw, 42px); border-radius: 26px; background: var(--paper); box-shadow: var(--shadow); text-align: center; }
+.setup-card h2 { margin: 4px 0 10px; font-family: Georgia, serif; font-size: 2rem; }
+.setup-card > p:not(.eyebrow) { color: var(--muted); }
+.setup-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.primary-button { padding: 16px; color: white; background: var(--green); }
+.primary-button.alternate { color: var(--green-dark); background: var(--lime); }
+.primary-button span { display: block; margin-top: 3px; font-size: 0.72rem; opacity: 0.72; }
+
+@media (max-width: 640px) {
+  .game-shell { width: min(100% - 20px, 960px); padding-top: 24px; }
+  .scoreboard { grid-template-columns: 1fr 1fr; }
+  .scoreboard div:nth-child(2) { border-right: 0; }
+  .scoreboard div:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .hands { gap: 10px; }
+  .hand { min-height: 130px; padding: 14px; }
+  .finger-count { font-size: 3.5rem; }
+  .setup-actions { grid-template-columns: 1fr; }
+}
