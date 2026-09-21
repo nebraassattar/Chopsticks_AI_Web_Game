@@ -142,7 +142,7 @@ def best_move_dp(depth):
             for j in range(5):
                 for k in range(5):
                     for l in range(5):
-                        state = ((i, j), (k, 1), h)
+                        state = ((i, j), (k, l), h)
 
                         if i == 0 and j == 0 and k == 0 and l == 0:
                             d[state] = (0, [])
@@ -151,7 +151,7 @@ def best_move_dp(depth):
                         elif k == 0 and l == 0:
                             d[state] = (1, [])
                         else:
-                            successors = next_move(state)
+                            successors = next_moves(state)
 
                             if h % 2 == 0:
                                 best_state = max(successors, key=lambda successor: d[successor][0])
@@ -211,12 +211,13 @@ def chopsticks_game(moves, index):
     else:
         print("A wins.")
 
-moves = 10
-print("The chopsticks game.")
-print("The game will end within", moves, "moves.")
-answer = input("Do you want to go first?")
-if answer in ["Y", "y", "Yes", "YES", "yes"]: 
-    chopsticks_game(moves, 0)
-else:
-    chopsticks_game(moves, 1)
+if __name__ == "__main__":
+    moves = 10
+    print("The chopsticks game.")
+    print("The game will end within", moves, "moves.")
+    answer = input("Do you want to go first?")
+    if answer in ["Y", "y", "Yes", "YES", "yes"]:
+        chopsticks_game(moves, 0)
+    else:
+        chopsticks_game(moves, 1)
     

@@ -1,5 +1,5 @@
 Why does Player A maximize while Player B minimizes?
-    All minimax values are defined from Player A's perspective. A value of +1 means Player A wins, 0 means a tie within the search limit, and -1 mean Player A loses. Therefore, Player A chooses the highest available value. Player B tried to produce the worst result for Player A so Player B chooses the lowest value
+    All minimax values are defined from Player A's perspective. A value of +1 means Player A wins, 0 means a tie within the search limit, and -1 means Player A loses. Therefore, Player A chooses the highest available value. Player B tries to produce the worst result for Player A, so Player B chooses the lowest value.
 
 Why is the DP table built from the deepest level toward level 0?
     The value of a state depends on the values of its possible successor states. A successor is always one level deeper than its parent. By starting at the maximum depth and working backward, the algorithm guarantees that every successor value is already stored when its parent is evaluated. This allows each state to be calculated using a simple table lookup.
