@@ -1,7 +1,7 @@
 "use strict";
 
 const assert = require("node:assert/strict");
-const engine = require("./game-engine.js");
+const engine = require("./game.js");
 
 function keys(states) {
   return new Set(states.map(engine.stateKey));
