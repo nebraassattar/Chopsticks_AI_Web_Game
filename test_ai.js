@@ -54,6 +54,25 @@ assert.ok(
   )
 );
 
+const analysis = ai.analyzePosition(initial, table);
+assert.equal(analysis.player, "A");
+assert.equal(analysis.mode, "MAX");
+assert.equal(analysis.moves.length, game.uniqueSuccessorStates(initial).length);
+assert.equal(analysis.moves.filter(item => item.selected).length, 1);
+assert.equal(
+  analysis.selectedValue,
+  Math.max(...analysis.moves.map(item => item.value))
+);
+
+const bAnalysisState = { playerA: [1, 1], playerB: [1, 1], level: 1 };
+const bAnalysis = ai.analyzePosition(bAnalysisState, table);
+assert.equal(bAnalysis.player, "B");
+assert.equal(bAnalysis.mode, "MIN");
+assert.equal(
+  bAnalysis.selectedValue,
+  Math.min(...bAnalysis.moves.map(item => item.value))
+);
+
 const fullTable = ai.buildMinimaxTable(20);
 assert.equal(fullTable.size, 625 * 21);
 

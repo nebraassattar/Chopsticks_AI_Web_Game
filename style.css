@@ -108,6 +108,33 @@ button { font: inherit; }
 .secondary-button, .primary-button { border: 0; border-radius: 13px; cursor: pointer; font-weight: 800; }
 .secondary-button { padding: 12px 18px; color: white; background: var(--green); }
 .secondary-button:disabled { cursor: default; opacity: 0.42; }
+.outline-button { border: 1px solid var(--green); color: var(--green); background: transparent; }
+
+.analysis-panel {
+  margin-top: 18px;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+.analysis-panel[hidden] { display: none; }
+.analysis-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.analysis-heading h2 { margin: 0; font-family: Georgia, serif; font-size: 1.8rem; }
+.analysis-badge { padding: 7px 11px; border-radius: 999px; color: var(--green-dark); background: var(--lime); font-size: 0.78rem; font-weight: 850; }
+.analysis-summary { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 10px; margin: 20px 0; }
+.analysis-summary div { padding: 13px; border-radius: 14px; background: #f1eee4; }
+.analysis-summary span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 0.69rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.analysis-summary code, .analysis-summary strong { font-size: 0.9rem; }
+.analysis-panel h3 { margin: 0 0 9px; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.analysis-moves { display: grid; gap: 7px; }
+.analysis-move { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 10px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 13px; }
+.analysis-move.selected { border-color: var(--green); background: rgba(201, 240, 107, 0.18); }
+.move-number { color: var(--muted); font-size: 0.76rem; font-weight: 800; }
+.move-description { font-weight: 720; }
+.move-value { min-width: 76px; text-align: right; font-weight: 850; }
+.selected-marker { margin-left: 6px; color: var(--green); font-size: 0.7rem; }
+.analysis-explanation { margin: 16px 0 0; padding: 13px 15px; border-left: 4px solid var(--coral); color: var(--muted); background: #faf7ee; line-height: 1.55; }
 
 .setup-overlay { position: fixed; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(15, 31, 24, 0.72); backdrop-filter: blur(9px); z-index: 5; }
 .setup-overlay[hidden] { display: none; }
@@ -128,4 +155,8 @@ button { font: inherit; }
   .hand { min-height: 130px; padding: 14px; }
   .finger-count { font-size: 3.5rem; }
   .setup-actions { grid-template-columns: 1fr; }
+  .controls { flex-wrap: wrap; }
+  .analysis-summary { grid-template-columns: 1fr; }
+  .analysis-move { grid-template-columns: 36px 1fr; }
+  .move-value { grid-column: 2; text-align: left; }
 }

@@ -103,10 +103,46 @@ function chooseOptimalMove(state, table) {
   ) ?? null;
 }
 
+function analyzePosition(state, table) {
+  const entry = table.get(GameEngine.stateKey(state));
+  if (!entry) {
+    throw new Error("The state is not present in the minimax table.");
+  }
+
+  const seen = new Set();
+  const moves = [];
+  const selectedKey = entry.nextState === null
+    ? null
+    : GameEngine.stateKey(entry.nextState);
+
+  for (const move of GameEngine.generateLegalMoves(state)) {
+    const successorKey = GameEngine.stateKey(move.nextState);
+    if (seen.has(successorKey)) continue;
+    seen.add(successorKey);
+
+    const successorEntry = table.get(successorKey);
+    moves.push({
+      move,
+      value: successorEntry.value,
+      selected: successorKey === selectedKey,
+    });
+  }
+
+  const player = GameEngine.currentPlayer(state);
+  return {
+    state: GameEngine.cloneState(state),
+    player,
+    mode: player === "A" ? "MAX" : "MIN",
+    moves,
+    selectedValue: entry.value,
+  };
+}
+
 const ChopsticksAI = {
   terminalValue,
   buildMinimaxTable,
   chooseOptimalMove,
+  analyzePosition,
 };
 
 if (typeof module !== "undefined" && module.exports) {

@@ -77,7 +77,26 @@
 
     <section class="controls" aria-label="Game controls">
       <button id="redistribute-button" class="secondary-button" disabled>Redistribute</button>
+      <button id="analysis-toggle" class="secondary-button outline-button" disabled>Show AI analysis</button>
       <button id="restart-button" class="secondary-button">New game</button>
+    </section>
+
+    <section class="analysis-panel" id="analysis-panel" hidden aria-labelledby="analysis-title">
+      <div class="analysis-heading">
+        <div>
+          <p class="eyebrow">LAST COMPUTER DECISION</p>
+          <h2 id="analysis-title">AI Analysis</h2>
+        </div>
+        <span class="analysis-badge" id="analysis-mode">—</span>
+      </div>
+      <div class="analysis-summary">
+        <div><span>Current state</span><code id="analysis-state">—</code></div>
+        <div><span>Computer role</span><strong id="analysis-role">—</strong></div>
+        <div><span>Predicted outcome for A</span><strong id="analysis-outcome">—</strong></div>
+      </div>
+      <h3>Legal moves considered</h3>
+      <div class="analysis-moves" id="analysis-moves"></div>
+      <p class="analysis-explanation" id="analysis-explanation"></p>
     </section>
   </main>
 
