@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chopsticks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="hero">
+      <p class="eyebrow">Dynamic Programming · Minimax</p>
+      <h1>Chopsticks</h1>
+      <p class="subtitle">Choose a hand, strike your opponent, and outthink the computer.</p>
+    </header>
+
+    <section class="scoreboard" aria-label="Game information">
+      <div><span>YOU ARE</span><strong id="human-role">—</strong></div>
+      <div><span>TURN</span><strong id="turn-display">Choose a side</strong></div>
+      <div><span>LEVEL</span><strong id="level-display">0 / 20</strong></div>
+      <div><span>MOVES LEFT</span><strong id="moves-display">20</strong></div>
+    </section>
+
+    <section class="board" aria-label="Chopsticks game board">
+      <article class="player-zone computer-zone">
+        <div class="player-heading">
+          <div>
+            <p class="zone-label">OPPONENT</p>
+            <h2>Computer <span id="computer-role"></span></h2>
+          </div>
+          <span class="turn-dot" id="computer-turn-dot" aria-hidden="true"></span>
+        </div>
+        <div class="hands">
+          <button class="hand" data-owner="computer" data-hand="left" disabled>
+            <span class="hand-label">Left hand</span>
+            <span class="finger-count" id="computer-left">1</span>
+            <span class="finger-pips" id="computer-left-pips" aria-hidden="true"></span>
+          </button>
+          <button class="hand" data-owner="computer" data-hand="right" disabled>
+            <span class="hand-label">Right hand</span>
+            <span class="finger-count" id="computer-right">1</span>
+            <span class="finger-pips" id="computer-right-pips" aria-hidden="true"></span>
+          </button>
+        </div>
+      </article>
+
+      <div class="center-panel">
+        <p id="status-message" role="status" aria-live="polite">Choose whether you want to move first or second.</p>
+        <div class="redistribution-panel" id="redistribution-panel" hidden>
+          <p>Choose a legal redistribution:</p>
+          <div id="redistribution-options" class="redistribution-options"></div>
+        </div>
+      </div>
+
+      <article class="player-zone human-zone">
+        <div class="player-heading">
+          <div>
+            <p class="zone-label">PLAYER</p>
+            <h2>You <span id="human-role-board"></span></h2>
+          </div>
+          <span class="turn-dot" id="human-turn-dot" aria-hidden="true"></span>
+        </div>
+        <div class="hands">
+          <button class="hand" data-owner="human" data-hand="left" disabled>
+            <span class="hand-label">Left hand</span>
+            <span class="finger-count" id="human-left">1</span>
+            <span class="finger-pips" id="human-left-pips" aria-hidden="true"></span>
+          </button>
+          <button class="hand" data-owner="human" data-hand="right" disabled>
+            <span class="hand-label">Right hand</span>
+            <span class="finger-count" id="human-right">1</span>
+            <span class="finger-pips" id="human-right-pips" aria-hidden="true"></span>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <section class="controls" aria-label="Game controls">
+      <button id="redistribute-button" class="secondary-button" disabled>Redistribute</button>
+      <button id="restart-button" class="secondary-button">New game</button>
+    </section>
+  </main>
+
+  <div class="setup-overlay" id="setup-overlay">
+    <section class="setup-card" aria-labelledby="setup-title">
+      <p class="eyebrow">NEW MATCH</p>
+      <h2 id="setup-title">When do you want to play?</h2>
+      <p>Player A always moves first. The computer uses depth-20 minimax.</p>
+      <div class="setup-actions">
+        <button class="primary-button" data-start="first">Go first <span>Play as A</span></button>
+        <button class="primary-button alternate" data-start="second">Go second <span>Play as B</span></button>
+      </div>
+    </section>
+  </div>
+
+  <script src="game.js"></script>
+  <script src="ai.js"></script>
+</body>
+</html>
